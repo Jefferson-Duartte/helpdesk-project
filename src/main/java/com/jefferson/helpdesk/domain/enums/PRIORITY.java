@@ -1,0 +1,45 @@
+package com.jefferson.helpdesk.domain.enums;
+
+public enum PRIORITY {
+    OPEN(0, "OPEN"),
+    PROGRESS(1, "PROGRESS"),
+    CLOSED(2, "CLOSED");
+
+    private Integer code;
+    private String description;
+
+    PRIORITY(Integer code, String description) {
+        this.code = code;
+        this.description = description;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public static PRIORITY toEnum(Integer code) {
+        if (code == null) {
+            return null;
+        }
+
+        for (PRIORITY p : PRIORITY.values()) {
+            if (code.equals(p.getCode())) {
+                return p;
+            }
+        }
+        throw new IllegalArgumentException("Invalid status");
+    }
+
+}
