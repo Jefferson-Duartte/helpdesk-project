@@ -1,9 +1,9 @@
 package com.jefferson.helpdesk.domain.enums;
 
 public enum PRIORITY {
-    OPEN(0, "OPEN"),
-    PROGRESS(1, "PROGRESS"),
-    CLOSED(2, "CLOSED");
+    LOW(0, "LOW"),
+    NORMAL(1, "NORMAL"),
+    HIGH(2, "HIGH");
 
     private Integer code;
     private String description;
@@ -39,7 +39,7 @@ public enum PRIORITY {
                 return p;
             }
         }
-        throw new IllegalArgumentException("Invalid status");
+        throw new IllegalArgumentException("Invalid priority");
     }
 
 }
