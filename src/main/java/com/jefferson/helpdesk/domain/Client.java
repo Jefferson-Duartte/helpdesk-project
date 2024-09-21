@@ -22,7 +22,7 @@ public class Client extends Person {
         addProfiles(PROFILE.CLIENT);
     }
 
-    public Client(Integer id, String name, String document, String email, String password, List<Request> requests) {
+    public Client(Integer id, String name, String document, String email, String password) {
         super(id, name, document, email, password);
         addProfiles(PROFILE.CLIENT);
     }
