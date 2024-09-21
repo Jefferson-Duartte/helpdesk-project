@@ -1,11 +1,13 @@
 package com.jefferson.helpdesk.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jefferson.helpdesk.domain.enums.PROFILE;
+import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.EnumSet;
 import java.util.Set;
@@ -13,14 +15,28 @@ import java.util.Set;
 @Getter
 @Setter
 @EqualsAndHashCode(of = {"id", "document"})
-public abstract class Person {
+@Entity(name = "tb_person")
+public abstract class Person implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
+
     protected String name;
+
+    @Column(unique = true)
     protected String document;
+
+    @Column(unique = true)
     protected String email;
+
     protected String password;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "tb_profiles")
     protected Set<PROFILE> profiles = EnumSet.noneOf(PROFILE.class);
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate createdAt = LocalDate.now();
 
     public Person() {
