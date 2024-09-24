@@ -1,5 +1,6 @@
 package com.jefferson.helpdesk.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jefferson.helpdesk.domain.enums.PROFILE;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -15,6 +16,7 @@ import java.util.List;
 public class Technical extends Person {
 
     @OneToMany(mappedBy = "technical")
+    @JsonIgnore
     private List<Request> requests = new ArrayList<>();
 
     public Technical() {
