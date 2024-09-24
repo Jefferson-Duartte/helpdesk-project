@@ -6,6 +6,7 @@ import com.jefferson.helpdesk.domain.enums.STATUS;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 @Setter
 @EqualsAndHashCode(of = "id")
 @Entity(name = "tb_request")
+@NoArgsConstructor
 public class Request {
 
     @Id
