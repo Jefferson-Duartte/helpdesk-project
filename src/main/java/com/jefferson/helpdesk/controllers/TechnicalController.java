@@ -1,6 +1,6 @@
 package com.jefferson.helpdesk.controllers;
 
-import com.jefferson.helpdesk.domain.Technical;
+import com.jefferson.helpdesk.domain.dtos.technical.TechnicalResponseDTO;
 import com.jefferson.helpdesk.services.TechnicalService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +19,7 @@ public class TechnicalController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Technical> findById(@PathVariable Integer id){
+    public ResponseEntity<TechnicalResponseDTO> findById(@PathVariable Integer id) {
         return ResponseEntity.ok().body(service.findById(id));
     }
-
 }
