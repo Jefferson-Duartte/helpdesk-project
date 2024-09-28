@@ -28,12 +28,14 @@ public class DBService {
 
     public void intanceDB() {
 
-        Technical technical = new Technical(null, "Jefferson", "4324324232", "jeff@mail.com", "123");
+        Technical technical = new Technical(null, "Jeffersoen", "43243243232", "jef@mail.com", "12213143");
+        Technical technical1 = new Technical(null, "Jeffers21on", "432432421232", "je2ff@mail.com", "12123");
+        Technical technical2 = new Technical(null, "Jeffereson", "4324324132", "je23ff@mail.com", "1232");
         technical.addProfiles(PROFILE.ADMIN);
         Client client = new Client(null, "Jeff", "87878765", "jefferson@mail.com", "123");
         Request request = new Request(null, client, technical, "Primeiro chamado", "Chamado 01", STATUS.PROGRESS, PRIORITY.NORMAL);
 
-        technicalRepository.saveAll(List.of(technical));
+        technicalRepository.saveAll(List.of(technical,technical1, technical2));
         clientRepository.saveAll(List.of(client));
         requestRepository.saveAll(List.of(request));
 
