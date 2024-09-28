@@ -1,8 +1,8 @@
 package com.jefferson.helpdesk.exceptions.handlers;
 
+import com.jefferson.helpdesk.exceptions.DataIntegrityViolationException;
 import com.jefferson.helpdesk.exceptions.ExceptionResponse;
 import com.jefferson.helpdesk.exceptions.ObjectNotFoundException;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +23,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ObjectNotFoundException.class)
     public ResponseEntity<ExceptionResponse> objectNotFound(ObjectNotFoundException exception, HttpServletRequest request){
         return buildResponseEntity(exception, HttpStatus.NOT_FOUND, request);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ExceptionResponse> dataIntegrityViolation(DataIntegrityViolationException exception, HttpServletRequest request){
+        return buildResponseEntity(exception, HttpStatus.BAD_REQUEST, request);
     }
 
 }
