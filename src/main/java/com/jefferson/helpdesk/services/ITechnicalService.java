@@ -11,7 +11,7 @@ public interface ITechnicalService {
 
     List<TechnicalResponseDTO> findAll();
 
-    String save(TechnicalRequestDTO dto);
+    TechnicalResponseDTO save(TechnicalRequestDTO dto);
 
     void checkIfUserExists(TechnicalRequestDTO dto);
 }

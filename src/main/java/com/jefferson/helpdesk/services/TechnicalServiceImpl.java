@@ -35,10 +35,9 @@ public class TechnicalServiceImpl implements ITechnicalService {
     }
 
     @Override
-    public String save(TechnicalRequestDTO dto) {
+    public TechnicalResponseDTO save(TechnicalRequestDTO dto) {
         checkIfUserExists(dto);
-        repository.save(mapper.toEntity(dto));
-        return "Usuário criado com sucesso";
+        return mapper.toResponseDTO(repository.save(mapper.toEntity(dto)));
     }
 
     @Override

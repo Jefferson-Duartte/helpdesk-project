@@ -4,10 +4,11 @@ import com.jefferson.helpdesk.domain.dtos.technical.TechnicalRequestDTO;
 import com.jefferson.helpdesk.domain.dtos.technical.TechnicalResponseDTO;
 import com.jefferson.helpdesk.services.ITechnicalService;
 import com.jefferson.helpdesk.services.TechnicalServiceImpl;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -31,8 +32,9 @@ public class TechnicalController {
     }
 
     @PostMapping()
-    public ResponseEntity<String> save(@RequestBody TechnicalRequestDTO dto){
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.save(dto));
+    public ResponseEntity<TechnicalResponseDTO> save(@RequestBody TechnicalRequestDTO dto){
+        var technical = service.save(dto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(technical.getId()).toUri();
+        return ResponseEntity.created(uri).body(technical);
     }
-
 }
