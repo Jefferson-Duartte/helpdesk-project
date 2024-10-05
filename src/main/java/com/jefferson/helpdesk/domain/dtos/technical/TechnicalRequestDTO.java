@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.util.Set;
 
@@ -19,6 +20,7 @@ public class TechnicalRequestDTO{
     @NotEmpty(message = "O campo NAME é requerido")
     private String name;
 
+    @CPF
     @NotEmpty(message = "O campo DOCUMENT é requerido")
     private String document;
 

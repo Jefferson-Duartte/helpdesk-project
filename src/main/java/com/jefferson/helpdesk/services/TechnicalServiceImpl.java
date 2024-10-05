@@ -25,7 +25,12 @@ public class TechnicalServiceImpl implements ITechnicalService {
     }
 
     public TechnicalResponseDTO findById(Integer id) {
-        return mapper.toResponseDTO(repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado")));
+        return mapper.toResponseDTO(this.findByIdEntity(id));
+    }
+
+    @Override
+    public Technical findByIdEntity(Integer id) {
+        return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Técnico não encontrado"));
     }
 
     @Override
@@ -57,10 +62,22 @@ public class TechnicalServiceImpl implements ITechnicalService {
 
     @Override
     public void deleteById(Integer id) {
-        var technical = repository.findById(id);
-        if (!technical.get().getRequests().isEmpty()) {
-            throw new DataIntegrityViolationException("Técnico possui ordens de serviço e não pode ser deletado!");
-        }
+        var technical = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Técnico não encontrado"));
+        findByIdEntity(id);
         repository.deleteById(id);
+    }
+
+    @Override
+    public TechnicalResponseDTO update(Integer id, TechnicalRequestDTO dto) {
+        var oldTechnical = findByIdEntity(id);
+
+        oldTechnical.setName(dto.getName());
+        oldTechnical.setEmail(dto.getEmail());
+        oldTechnical.setDocument(dto.getDocument());
+        oldTechnical.setPassword(dto.getPassword());
+        oldTechnical.setProfiles(dto.getProfiles());
+
+        Technical updatedTechnical = repository.save(oldTechnical);
+        return mapper.toResponseDTO(updatedTechnical);
     }
 }

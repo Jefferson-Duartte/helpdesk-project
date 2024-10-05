@@ -45,4 +45,9 @@ public class TechnicalController {
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TechnicalResponseDTO> update(@PathVariable Integer id, @RequestBody @Valid TechnicalRequestDTO dto){
+        return ResponseEntity.ok().body(service.update(id, dto));
+    }
 }

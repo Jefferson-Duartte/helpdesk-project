@@ -1,5 +1,6 @@
 package com.jefferson.helpdesk.services;
 
+import com.jefferson.helpdesk.domain.Technical;
 import com.jefferson.helpdesk.domain.dtos.technical.TechnicalRequestDTO;
 import com.jefferson.helpdesk.domain.dtos.technical.TechnicalResponseDTO;
 
@@ -9,6 +10,8 @@ public interface ITechnicalService {
 
     TechnicalResponseDTO findById(Integer id);
 
+    Technical findByIdEntity(Integer id);
+
     List<TechnicalResponseDTO> findAll();
 
     TechnicalResponseDTO save(TechnicalRequestDTO dto);
@@ -16,4 +19,6 @@ public interface ITechnicalService {
     void checkIfUserExists(TechnicalRequestDTO dto);
 
     void deleteById(Integer id);
+
+    TechnicalResponseDTO update(Integer id, TechnicalRequestDTO dto);
 }
