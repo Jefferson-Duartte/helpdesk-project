@@ -1,32 +1,19 @@
 package com.jefferson.helpdesk.domain.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum STATUS {
     OPEN(0, "OPEN"),
     PROGRESS(1, "PROGRESS"),
     CLOSED(2, "CLOSED");
 
-    private Integer code;
-    private String description;
+    private final Integer CODE;
+    private final String DESCRIPTION;
 
     STATUS(Integer code, String description) {
-        this.code = code;
-        this.description = description;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+        this.CODE = code;
+        this.DESCRIPTION = description;
     }
 
     public static STATUS toEnum(Integer code) {
@@ -35,7 +22,7 @@ public enum STATUS {
         }
 
         for (STATUS p : STATUS.values()) {
-            if (code.equals(p.getCode())) {
+            if (code.equals(p.getCODE())) {
                 return p;
             }
         }
