@@ -14,4 +14,6 @@ public interface ITechnicalService {
     TechnicalResponseDTO save(TechnicalRequestDTO dto);
 
     void checkIfUserExists(TechnicalRequestDTO dto);
+
+    void deleteById(Integer id);
 }

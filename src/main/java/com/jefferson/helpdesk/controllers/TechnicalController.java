@@ -5,6 +5,7 @@ import com.jefferson.helpdesk.domain.dtos.technical.TechnicalResponseDTO;
 import com.jefferson.helpdesk.services.ITechnicalService;
 import com.jefferson.helpdesk.services.TechnicalServiceImpl;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -33,9 +34,15 @@ public class TechnicalController {
     }
 
     @PostMapping()
-    public ResponseEntity<TechnicalResponseDTO> save(@Valid @RequestBody TechnicalRequestDTO dto){
+    public ResponseEntity<TechnicalResponseDTO> save(@Valid @RequestBody TechnicalRequestDTO dto) {
         var technical = service.save(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(technical.getId()).toUri();
         return ResponseEntity.created(uri).body(technical);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<TechnicalResponseDTO> deleteById(@PathVariable Integer id) {
+        service.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

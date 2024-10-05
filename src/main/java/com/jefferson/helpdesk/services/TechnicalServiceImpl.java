@@ -25,8 +25,7 @@ public class TechnicalServiceImpl implements ITechnicalService {
     }
 
     public TechnicalResponseDTO findById(Integer id) {
-        Technical technical = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
-        return mapper.toResponseDTO(technical);
+        return mapper.toResponseDTO(repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado")));
     }
 
     @Override
@@ -54,5 +53,14 @@ public class TechnicalServiceImpl implements ITechnicalService {
                 documentObj.get().getDocument().equals(dto.getDocument())) {
             throw new DataIntegrityViolationException("Usuário já existe");
         }
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        var technical = repository.findById(id);
+        if (!technical.get().getRequests().isEmpty()) {
+            throw new DataIntegrityViolationException("Técnico possui ordens de serviço e não pode ser deletado!");
+        }
+        repository.deleteById(id);
     }
 }

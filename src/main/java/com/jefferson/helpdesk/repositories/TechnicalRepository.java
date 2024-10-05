@@ -9,5 +9,5 @@ public interface TechnicalRepository extends JpaRepository<Technical, Integer> {
 
     Optional<Technical> findByEmail(String email);
     Optional<Technical> findByDocument(String document);
-
+    void deleteById(Integer id);
 }
