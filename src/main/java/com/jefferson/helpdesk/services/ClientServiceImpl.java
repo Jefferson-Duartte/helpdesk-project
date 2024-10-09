@@ -4,7 +4,9 @@ import com.jefferson.helpdesk.domain.dtos.client.ClientResponseDTO;
 import com.jefferson.helpdesk.exceptions.ObjectNotFoundException;
 import com.jefferson.helpdesk.mappers.ClientMapper;
 import com.jefferson.helpdesk.repositories.ClientRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ClientServiceImpl implements IClientService{
 
     private ClientRepository repository;
