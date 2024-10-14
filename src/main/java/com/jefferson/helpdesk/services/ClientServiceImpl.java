@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class ClientServiceImpl implements IClientService{
+public class ClientServiceImpl implements IClientService {
 
     private ClientRepository repository;
     private ClientMapper mapper;
@@ -24,9 +24,15 @@ public class ClientServiceImpl implements IClientService{
 
     @Override
     public ClientResponseDTO findById(Integer id) {
-        var client = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado!"));
+        var client = findByIdEntity(id);
         return mapper.toResponseDTO(client);
     }
+
+    @Override
+    public Client findByIdEntity(Integer id) {
+        return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Cliente não encontrado"));
+    }
+
 
     @Override
     public ClientResponseDTO save(ClientRequestDTO dto) {
@@ -48,4 +54,19 @@ public class ClientServiceImpl implements IClientService{
             throw new DataIntegrityViolationException("Usuário já existe");
         }
     }
+
+    @Override
+    public ClientResponseDTO update(Integer id, ClientRequestDTO dto) {
+        var oldUser = findByIdEntity(id);
+
+        oldUser.setName(dto.getName());
+        oldUser.setEmail(dto.getEmail());
+        oldUser.setDocument(dto.getDocument());
+        oldUser.setPassword(dto.getPassword());
+        oldUser.setProfiles(dto.getProfiles());
+
+        Client updatedUser = repository.save(oldUser);
+        return mapper.toResponseDTO(updatedUser);
+    }
+
 }
