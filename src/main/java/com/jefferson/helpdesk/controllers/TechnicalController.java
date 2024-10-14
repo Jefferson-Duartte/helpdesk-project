@@ -5,7 +5,6 @@ import com.jefferson.helpdesk.domain.dtos.technical.TechnicalResponseDTO;
 import com.jefferson.helpdesk.services.ITechnicalService;
 import com.jefferson.helpdesk.services.TechnicalServiceImpl;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
