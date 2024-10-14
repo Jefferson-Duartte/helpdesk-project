@@ -33,7 +33,6 @@ public class ClientServiceImpl implements IClientService {
         return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Cliente não encontrado"));
     }
 
-
     @Override
     public ClientResponseDTO save(ClientRequestDTO dto) {
         checkIfUserExists(dto);
@@ -44,13 +43,10 @@ public class ClientServiceImpl implements IClientService {
         Optional<Client> emailObj = repository.findByEmail(dto.getEmail());
         Optional<Client> documentObj = repository.findByDocument(dto.getDocument());
 
-        if (emailObj.isPresent() && !emailObj.get().getDocument().equals(dto.getDocument()) ||
-                documentObj.isPresent() && !documentObj.get().getEmail().equals(dto.getEmail())) {
+        if (emailObj.isPresent() && !emailObj.get().getDocument().equals(dto.getDocument()) || documentObj.isPresent() && !documentObj.get().getEmail().equals(dto.getEmail())) {
             throw new DataIntegrityViolationException("Dados inválidos");
         }
-        if (emailObj.isPresent() && documentObj.isPresent() &&
-                emailObj.get().getEmail().equals(dto.getEmail()) &&
-                documentObj.get().getDocument().equals(dto.getDocument())) {
+        if (emailObj.isPresent() && documentObj.isPresent() && emailObj.get().getEmail().equals(dto.getEmail()) && documentObj.get().getDocument().equals(dto.getDocument())) {
             throw new DataIntegrityViolationException("Usuário já existe");
         }
     }
@@ -67,6 +63,12 @@ public class ClientServiceImpl implements IClientService {
 
         Client updatedUser = repository.save(oldUser);
         return mapper.toResponseDTO(updatedUser);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        findByIdEntity(id);
+        repository.deleteById(id);
     }
 
 }
