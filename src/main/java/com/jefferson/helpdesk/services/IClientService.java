@@ -16,5 +16,6 @@ public interface IClientService {
 
     Client findByIdEntity(Integer id);
 
+    void deleteById(Integer id);
 
 }
