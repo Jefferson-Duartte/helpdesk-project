@@ -62,7 +62,6 @@ public class TechnicalServiceImpl implements ITechnicalService {
 
     @Override
     public void deleteById(Integer id) {
-        var technical = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Técnico não encontrado"));
         findByIdEntity(id);
         repository.deleteById(id);
     }
