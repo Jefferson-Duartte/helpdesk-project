@@ -2,6 +2,7 @@ package com.jefferson.helpdesk.controllers;
 
 import com.jefferson.helpdesk.domain.dtos.client.ClientRequestDTO;
 import com.jefferson.helpdesk.domain.dtos.client.ClientResponseDTO;
+import com.jefferson.helpdesk.domain.dtos.technical.TechnicalResponseDTO;
 import com.jefferson.helpdesk.services.ClientServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +36,12 @@ public class ClientController {
     @PutMapping("/{id}")
     public ResponseEntity<ClientResponseDTO> update(@PathVariable Integer id, @RequestBody @Valid ClientRequestDTO dto){
         return ResponseEntity.ok().body(service.update(id, dto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<TechnicalResponseDTO> delete(@PathVariable Integer id){
+        service.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
