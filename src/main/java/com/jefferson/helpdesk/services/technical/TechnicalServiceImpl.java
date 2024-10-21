@@ -24,6 +24,7 @@ public class TechnicalServiceImpl implements ITechnicalService {
         this.mapper = mapper;
     }
 
+    @Override
     public TechnicalResponseDTO findById(Integer id) {
         return mapper.toResponseDTO(this.findByIdEntity(id));
     }
