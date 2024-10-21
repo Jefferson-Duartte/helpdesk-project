@@ -1,4 +1,4 @@
-package com.jefferson.helpdesk.services;
+package com.jefferson.helpdesk.services.technical;
 
 import com.jefferson.helpdesk.domain.Technical;
 import com.jefferson.helpdesk.domain.dtos.technical.TechnicalRequestDTO;

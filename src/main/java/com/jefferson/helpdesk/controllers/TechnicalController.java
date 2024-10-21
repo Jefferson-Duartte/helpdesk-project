@@ -2,8 +2,8 @@ package com.jefferson.helpdesk.controllers;
 
 import com.jefferson.helpdesk.domain.dtos.technical.TechnicalRequestDTO;
 import com.jefferson.helpdesk.domain.dtos.technical.TechnicalResponseDTO;
-import com.jefferson.helpdesk.services.ITechnicalService;
-import com.jefferson.helpdesk.services.TechnicalServiceImpl;
+import com.jefferson.helpdesk.services.technical.ITechnicalService;
+import com.jefferson.helpdesk.services.technical.TechnicalServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

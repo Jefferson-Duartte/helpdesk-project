@@ -1,4 +1,4 @@
-package com.jefferson.helpdesk.services;
+package com.jefferson.helpdesk.services.client;
 
 import com.jefferson.helpdesk.domain.Client;
 import com.jefferson.helpdesk.domain.dtos.client.ClientRequestDTO;
