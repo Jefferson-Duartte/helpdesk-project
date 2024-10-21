@@ -7,6 +7,8 @@ import com.jefferson.helpdesk.mappers.TicketMapper;
 import com.jefferson.helpdesk.repositories.TicketRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TicketServiceImpl implements ITicketService {
 
@@ -27,6 +29,11 @@ public class TicketServiceImpl implements ITicketService {
     @Override
     public Ticket findByIdEntity(Integer id) {
         return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Chamado não encontrado"));
+    }
+
+    @Override
+    public List<TicketResponseDTO> findAll() {
+        return mapper.toListResponseDTO(repository.findAll());
     }
 
 
