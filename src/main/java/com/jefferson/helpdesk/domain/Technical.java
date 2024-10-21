@@ -17,7 +17,7 @@ public class Technical extends Person {
 
     @OneToMany(mappedBy = "technical")
     @JsonIgnore
-    private List<Request> requests = new ArrayList<>();
+    private List<Ticket> tickets = new ArrayList<>();
 
     public Technical() {
         addProfiles(PROFILE.TECHNICAL);

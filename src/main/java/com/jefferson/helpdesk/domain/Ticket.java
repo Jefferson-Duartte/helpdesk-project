@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @EqualsAndHashCode(of = "id")
 @Entity(name = "tb_request")
 @NoArgsConstructor
-public class Request {
+public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,7 +44,7 @@ public class Request {
     @JoinColumn(name = "client_id")
     private Client client;
 
-    public Request(Integer id, Client client, Technical technical, String observations, String title, STATUS status, PRIORITY priority) {
+    public Ticket(Integer id, Client client, Technical technical, String observations, String title, STATUS status, PRIORITY priority) {
         this.id = id;
         this.client = client;
         this.technical = technical;

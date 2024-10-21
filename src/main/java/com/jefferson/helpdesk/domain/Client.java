@@ -3,7 +3,6 @@ package com.jefferson.helpdesk.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jefferson.helpdesk.domain.enums.PROFILE;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +17,7 @@ public class Client extends Person {
 
     @OneToMany(mappedBy = "client")
     @JsonIgnore
-    private List<Request> requests = new ArrayList<>();
+    private List<Ticket> tickets = new ArrayList<>();
 
     public Client() {
         addProfiles(PROFILE.CLIENT);
